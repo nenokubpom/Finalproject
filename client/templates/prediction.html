@@ -1,0 +1,32 @@
+{% extends 'base_layout.html' %}
+
+{% block body %}
+<h1>Prediction</h1>
+<p>Prediction : {{predic[0]['Name']}}</p>
+  <table class="container">
+    <tr>
+        <th><h4>Who is you</h4></th>
+        <th><h4>Name</h4></th>
+        <th><h4>Fullname</h4></th>
+        <th><h4>Nationality</h4></th>
+  <th><h4>Dath of birth</h4></th>
+  <th><h4>Band</h4></th>
+  <th><h4>Position</h4></th>
+  <th><h4>Height</h4></th>
+  <th><h4>IG</h4></th>
+    </tr>
+
+    <tr>
+        <td>{{predic[0]['Your']}}</td>
+        <td>{{predic[0]['Name']}}</td>
+        <td>{{predic[0]['Fullname']}}</td>
+        <td>{{predic[0]['Nationality']}}</td>
+  <td>{{predic[0]['Day']}} {{predic[0]['Month']}} {{predic[0]['Year']}}</td>
+  <td>{{predic[0]['Band']}}</td>
+  <td>{{predic[0]['Position']}}</td>
+  <td>{{predic[0]['Height']}}</td>
+        <td>{{predic[0]['IG']}}</td>
+    </tr>
+</table>
+
+{% endblock %}

@@ -1,0 +1,421 @@
+openapi: '3.0.2'
+info:
+  title: Girlgroup
+  description: API Reference
+  version: '1.0'
+servers:
+  - url: http://localhost:5000
+paths:
+  /girlgroup/:
+    get:
+      tags:
+        - GirlGroup API
+      summary: GirlGroup API
+      responses:
+        '200':
+          description: Successful operation search name
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/girlgroupSchemas"
+        '204':
+          description: not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/girlgroupSchemasnull"
+    delete:
+      tags:
+        - GirlGroup API
+      summary: Delete responced request
+      security:
+        - basic authentication: []
+      requestBody:
+        content: 
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Abdul
+      responses:
+        '200':
+          description: Delete complete
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: Delete complete.
+                
+        '500':
+          description: Delete fail
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: Delete failed.
+    put:
+      tags:
+        - GirlGroup API
+      summary: User update request to web provider
+      security:
+        - basic authentication: []
+      requestBody:
+        content: 
+          application/json:
+            schema:
+                $ref: "#/components/schemas/girlgroupSchemas"
+      responses:
+        '200':
+          description: Delete complete
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: Update complete.
+                
+        '500':
+          description: Delete fail
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: Update failed.
+    
+
+    post:
+      tags:
+        - GirlGroup API
+      summary: User update request to web provider
+      requestBody:
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Abdul.
+                  mail:
+                    type: string
+                    example: 'abdule@gmail.com'
+                  request:
+                    type: string
+                    example: Add data of Suzy please
+                  
+      responses:
+        '200':
+          description: Delete complete
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: Request complete.
+          
+        '500':
+          description: Delete fail
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: Request failed.
+    
+        
+  /girlgroup/searchyear/{year}:
+    get:
+      tags:
+        - GirlGroup API
+      summary: GirlGroup API
+      parameters:
+        - name: Year
+          in: path
+          description: Year of birth
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Found single.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/girlgroupSchemas"
+        '204':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: Don't have single in data.
+  /girlgroup/{name}:
+    get:
+      tags:
+        - GirlGroup API
+      summary: GirlGroup API
+      parameters:
+        - name: name
+          in: path
+          description: Name of single
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Found single.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/girlgroupSchemas"
+        '204':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: Don't have her data.
+  /girlgroup/band/{band}:
+    get:
+      tags:
+        - GirlGroup API
+      summary: GirlGroup API
+      parameters:
+        - name: band
+          in: path
+          description: band of kpop girlgroup
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Found group.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/girlgroupSchemas"
+        '204':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: Don't have band data.
+  /girlgroup/game:
+    post:
+      tags:
+        - GirlGroup API
+      summary: User update request to web provider
+      requestBody:
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  key:
+                    type: string
+                    example: mykey
+                  base64:
+                    type: string
+                    example: 'base64'
+                  
+      responses:
+        '200':
+          description: Delete complete
+          content:
+            application/json:
+              schema:
+                schema:
+                $ref: "#/components/schemas/girlgroupSchemasml"
+          
+        '500':
+          description: Delete fail
+          content:
+            application/json:
+              schema:
+                schema:
+                $ref: "#/components/schemas/girlgroupSchemasnullml"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Token:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+        expires_in:
+          type: integer
+          format: int64
+        refresh_token:
+          type: string
+    girlgroupSchemas:
+      type: object
+      properties:
+        Name:
+          type: string
+          example: Lisa
+        Fullname:
+          type: string
+          example: Lalisa Manoban
+        Nationality:
+          type: string
+          example: Thai
+        Day:
+          type: integer
+          example: 27
+        Month:
+          type: string
+          example: March
+        Year:
+          type: integer
+          example: 1997
+        Band:
+          type: string
+          example: BLACKPINK
+        Position:
+          type: string
+          example: Main Dancer, Lead Rapper, Sub Vocalist, Maknae
+        Height:
+          type: string
+          example: 167 CM
+        IG:
+          type: string
+          example: '@lalalalisa_m'
+    girlgroupSchemasnull:
+      type: object
+      properties:
+        Name:
+          type: string
+          example: null
+        Fullname:
+          type: string
+          example: null
+        Nationality:
+          type: string
+          example: null
+        Day:
+          type: integer
+          example: null
+        Month:
+          type: string
+          example: null
+        Year:
+          type: integer
+          example: null
+        Band:
+          type: string
+          example: null
+        Position:
+          type: string
+          example: null
+        Height:
+          type: string
+          example: null
+        IG:
+          type: string
+          example: null
+    girlgroupSchemasml:
+      type: object
+      properties:
+        Your:
+          type: string
+          example: This is your in kpop girlgroup
+        Name:
+          type: string
+          example: Lisa
+        Fullname:
+          type: string
+          example: Lalisa Manoban
+        Nationality:
+          type: string
+          example: Thai
+        Day:
+          type: integer
+          example: 27
+        Month:
+          type: string
+          example: March
+        Year:
+          type: integer
+          example: 1997
+        Band:
+          type: string
+          example: BLACKPINK
+        Position:
+          type: string
+          example: Main Dancer, Lead Rapper, Sub Vocalist, Maknae
+        Height:
+          type: string
+          example: 167 CM
+        IG:
+          type: string
+          example: '@lalalalisa_m'
+    girlgroupSchemasnullml:
+      type: object
+      properties:
+        Your:
+          type: string
+          example: null
+        Name:
+          type: string
+          example: null
+        Fullname:
+          type: string
+          example: null
+        Nationality:
+          type: string
+          example: null
+        Day:
+          type: integer
+          example: null
+        Month:
+          type: string
+          example: null
+        Year:
+          type: integer
+          example: null
+        Band:
+          type: string
+          example: null
+        Position:
+          type: string
+          example: null
+        Height:
+          type: string
+          example: null
+        IG:
+          type: string
+          example: null

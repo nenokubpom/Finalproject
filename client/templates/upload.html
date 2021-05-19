@@ -1,0 +1,13 @@
+{% extends 'base_layout.html' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html>
+
+<h1>Upload Image</h1>
+<form method="post" enctype="multipart/form-data">
+    <input type="file" name="file1" accept="image/*">
+    <input type="submit">
+</form>
+
+{% endblock %}

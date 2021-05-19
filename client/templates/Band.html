@@ -1,0 +1,55 @@
+{% extends 'base_layout.html' %}
+
+{% block body %}
+
+
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+      <h1>Seach Bands</h1>
+      <h2>to bands korea girl group</h2>
+      
+
+      <form action="/band" method="post" role="form" class="php-email-form">
+        <div class="row no-gutters">
+          <div class="col-md-6 form-group pr-md-1">
+            <input type="text" name="name" class="form-control" id="name" placeholder="Your Bands" required>
+          </div>
+          
+        </div>
+
+        <div class="my-3">
+          <div class="loading">Loading</div>
+          <div class="error-message"></div>
+          <div class="sent-message">Your notification request was sent. Thank you!</div>
+        </div>
+        <div class="text-center"><button type="submit">search </button></div>
+      </form>
+    </div>
+  </section><!-- End Hero -->
+  <table class="container">
+    <tr>
+        <th><h4>Name</h4></th>
+        <th><h4>Fullname</h4></th>
+        <th><h4>Nationality</h4></th>
+  <th><h4>Dath of birth</h4></th>
+  <th><h4>Band</h4></th>
+  <th><h4>Position</h4></th>
+  <th><h4>Height</h4></th>
+  <th><h4>IG</h4></th>
+    </tr>
+    {%for x in data %}
+    <tr>
+        <td>{{x['Name']}}</td>
+        <td>{{x['Fullname']}}</td>
+        <td>{{x['Nationality']}}</td>
+  <td>{{x['Day']}} {{x['Month']}} {{x['Year']}}</td>
+  <td>{{x['Band']}}</td>
+  <td>{{x['Position']}}</td>
+  <td>{{x['Height']}}</td>
+        <td>{{x['IG']}}</td>
+    </tr>
+    {%endfor%}
+</table>
+  {% endblock %}
